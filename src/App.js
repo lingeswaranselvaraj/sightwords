@@ -34,7 +34,71 @@ function App() {
     { word: 'but', category: 'conjunctions' },
     { word: 'had', category: 'verbs' },
     { word: 'at', category: 'prepositions' },
-    { word: 'him', category: 'pronouns' }
+    { word: 'him', category: 'pronouns' },
+    { word: 'with', category: 'prepositions' },
+    { word: 'up', category: 'prepositions' },
+    { word: 'all', category: 'quantifiers' },
+    { word: 'look', category: 'action' },
+    { word: 'is', category: 'verbs' },
+    { word: 'her', category: 'pronouns' },
+    { word: 'there', category: 'adverbs' },
+    { word: 'some', category: 'quantifiers' },
+    { word: 'out', category: 'prepositions' },
+    { word: 'as', category: 'conjunctions' },
+    { word: 'be', category: 'verbs' },
+    { word: 'have', category: 'verbs' },
+    { word: 'go', category: 'action' },
+    { word: 'we', category: 'pronouns' },
+    { word: 'am', category: 'verbs' },
+    { word: 'then', category: 'adverbs' },
+    { word: 'little', category: 'adjectives' },
+    { word: 'down', category: 'prepositions' },
+    { word: 'do', category: 'action' },
+    { word: 'can', category: 'modals' },
+    { word: 'could', category: 'modals' },
+    { word: 'when', category: 'question' },
+    { word: 'did', category: 'verbs' },
+    { word: 'what', category: 'question' },
+    { word: 'so', category: 'conjunctions' },
+    { word: 'see', category: 'action' },
+    { word: 'not', category: 'negation' },
+    { word: 'were', category: 'verbs' },
+    { word: 'get', category: 'action' },
+    { word: 'them', category: 'pronouns' },
+    { word: 'like', category: 'action' },
+    { word: 'one', category: 'numbers' },
+    { word: 'this', category: 'demonstrative' },
+    { word: 'my', category: 'possessive' },
+    { word: 'would', category: 'modals' },
+    { word: 'me', category: 'pronouns' },
+    { word: 'will', category: 'modals' },
+    { word: 'yes', category: 'affirmative' },
+    { word: 'big', category: 'adjectives' },
+    { word: 'went', category: 'verbs' },
+    { word: 'are', category: 'verbs' },
+    { word: 'come', category: 'action' },
+    { word: 'if', category: 'conditionals' },
+    { word: 'now', category: 'adverbs' },
+    { word: 'long', category: 'adjectives' },
+    { word: 'no', category: 'negation' },
+    { word: 'came', category: 'verbs' },
+    { word: 'ask', category: 'action' },
+    { word: 'very', category: 'adverbs' },
+    { word: 'an', category: 'articles' },
+    { word: 'over', category: 'prepositions' },
+    { word: 'your', category: 'possessive' },
+    { word: 'its', category: 'possessive' },
+    { word: 'ride', category: 'action' },
+    { word: 'into', category: 'prepositions' },
+    { word: 'just', category: 'adverbs' },
+    { word: 'blue', category: 'colors' },
+    { word: 'red', category: 'colors' },
+    { word: 'from', category: 'prepositions' },
+    { word: 'good', category: 'adjectives' },
+    { word: 'any', category: 'quantifiers' },
+    { word: 'about', category: 'prepositions' },
+    { word: 'around', category: 'prepositions' },
+    { word: 'want', category: 'action' }
   ];
 
   // Background colors array for "Next Word" button
@@ -94,11 +158,12 @@ function App() {
 
   // Select next word in sequence
   const selectNextWord = () => {
-    const filteredWords = getFilteredWords();
-    if (filteredWords.length > 0) {
-      const currentIndex = filteredWords.findIndex(item => item.word === currentWord);
-      const nextIndex = (currentIndex + 1) % filteredWords.length;
-      const newWord = filteredWords[nextIndex].word;
+    // Always use ALL words for next word sequence, not filtered by category
+    const allWords = sightWords;
+    if (allWords.length > 0) {
+      const currentIndex = allWords.findIndex(item => item.word === currentWord);
+      const nextIndex = (currentIndex + 1) % allWords.length;
+      const newWord = allWords[nextIndex].word;
       setCurrentWord(newWord);
       setShowAnimation(true);
       setTimeout(() => setShowAnimation(false), 500);
