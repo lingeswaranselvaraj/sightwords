@@ -35,6 +35,18 @@ body {
   }
 }
 
+/* Main Content Layout */
+.main-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
 /* Header Styles */
 .app-header {
   text-align: center;
@@ -68,6 +80,117 @@ body {
   padding: 10px 20px;
   border-radius: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Attractive Score Display */
+.score-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  animation: scoreGlow 2s infinite alternate;
+}
+
+.score-icon {
+  font-size: 2rem;
+  animation: trophyBounce 2s infinite;
+  filter: drop-shadow(2px 2px 4px rgba(255, 193, 7, 0.3));
+}
+
+.score-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd700 0%, #ffb347 50%, #ff8c00 100%);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 3px solid #ff6b35;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.score-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shine 3s infinite;
+}
+
+.score-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.9rem;
+  color: #8b4513;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+  font-weight: bold;
+}
+
+.score-number {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.2rem;
+  color: #d2691e;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  line-height: 1;
+  animation: numberPulse 1.5s infinite;
+}
+
+.score-sparkle {
+  font-size: 1.5rem;
+  animation: sparkleRotate 3s infinite linear;
+  filter: drop-shadow(1px 1px 3px rgba(255, 215, 0, 0.5));
+}
+
+/* Score Animations */
+@keyframes scoreGlow {
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(255, 193, 7, 0.6));
+  }
+}
+
+@keyframes trophyBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.1);
+  }
+}
+
+@keyframes numberPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes sparkleRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .progress-text {
@@ -146,6 +269,105 @@ body {
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* Category Explanation Styles */
+.category-explanation {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e8f4fd 100%);
+  border: 3px solid #45b7d1;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0 6px 20px rgba(69, 183, 209, 0.2);
+  animation: slideInExplanation 0.5s ease-out;
+  max-width: 350px;
+}
+
+.explanation-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.explanation-text {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1rem;
+  color: #34495e;
+  margin: 0 0 15px 0;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.explanation-examples {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  border: 2px solid #96ceb4;
+  box-shadow: 0 3px 12px rgba(150, 206, 180, 0.2);
+}
+
+.explanation-examples > strong {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1rem;
+  color: #27ae60;
+  display: block;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.explanation-examples ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.explanation-examples li {
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 6px 0;
+  position: relative;
+  padding-left: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Highlight key words in examples */
+.explanation-examples li strong {
+  display: inline;
+  color: #e74c3c;
+  font-weight: bold;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.explanation-examples li::before {
+  content: "💡";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+}
+
+@keyframes slideInExplanation {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Word Display */
 .word-display {
   width: 100%;
@@ -157,28 +379,51 @@ body {
 }
 
 .word-card {
-  background: linear-gradient(135deg, #fff 0%, #f7fafc 100%);
-  border-radius: 30px;
-  padding: 60px 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 5px solid #e2e8f0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 35px;
+  padding: 80px 60px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(76, 175, 80, 0.3);
+  border: 6px solid #4CAF50;
   transition: all 0.3s ease;
-  min-width: 300px;
+  min-width: 400px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .word-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  transform: scale(1.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 20px rgba(76, 175, 80, 0.4);
+  border-color: #45a049;
+}
+
+.word-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #4CAF50, #8BC34A, #4CAF50, #8BC34A);
+  border-radius: 35px;
+  z-index: -1;
+  animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 .current-word {
   font-family: 'Fredoka One', cursive;
-  font-size: 4rem;
+  font-size: 5rem;
   color: #2d3748;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2), 0 0 20px rgba(76, 175, 80, 0.3);
   display: block;
   animation: wordPulse 2s ease-in-out infinite;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
 
 @keyframes wordPulse {
@@ -741,5 +986,581 @@ body {
   
   .cracker {
     font-size: 1.5rem;
+  }
+  
+  /* Enhanced word display for mobile */
+  .word-card {
+    min-width: 280px;
+    padding: 60px 30px;
+    border-width: 4px;
+  }
+  
+  .current-word {
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+  }
+}
+
+/* Score Popup Animations */
+@keyframes scorePopup {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    backdrop-filter: blur(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.03);
+    backdrop-filter: blur(1px);
+  }
+  30% {
+    transform: scale(1);
+    backdrop-filter: blur(1px);
+  }
+  85% {
+    opacity: 1;
+    transform: scale(1);
+    backdrop-filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    backdrop-filter: blur(1px);
+  }
+}
+
+@keyframes scoreNumber {
+  0% {
+    transform: scale(0);
+    color: #FFD700;
+  }
+  50% {
+    transform: scale(1.3);
+    color: #FFF700;
+  }
+  100% {
+    transform: scale(1);
+    color: #FFD700;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN FOR ALL PLATFORMS
+======================================== */
+
+/* Extra Large Desktops (1400px and up) */
+@media (min-width: 1400px) {
+  .app-title {
+    font-size: 4rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1.8rem;
+  }
+  
+  .word-card {
+    min-width: 500px;
+    padding: 100px 80px;
+  }
+  
+  .current-word {
+    font-size: 6rem;
+  }
+  
+  .control-button {
+    font-size: 1.4rem;
+    padding: 18px 30px;
+  }
+  
+  .category-explanation {
+    max-width: 400px;
+  }
+}
+
+/* Large Desktops (1200px to 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .app-title {
+    font-size: 3.5rem;
+  }
+  
+  .word-card {
+    min-width: 450px;
+    padding: 90px 70px;
+  }
+  
+  .current-word {
+    font-size: 5.5rem;
+  }
+}
+
+/* Medium Desktops (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .app {
+    padding: 15px;
+  }
+  
+  .app-title {
+    font-size: 3rem;
+  }
+  
+  .word-card {
+    min-width: 400px;
+    padding: 80px 60px;
+  }
+  
+  .current-word {
+    font-size: 5rem;
+  }
+  
+  .controls {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .category-explanation {
+    max-width: 300px;
+    right: 10px;
+  }
+}
+
+/* Tablets (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .app {
+    padding: 15px 10px;
+  }
+  
+  .app-header {
+    margin-bottom: 20px;
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .word-card {
+    min-width: 350px;
+    max-width: 90vw;
+    padding: 60px 40px;
+    margin: 20px 0;
+  }
+  
+  .current-word {
+    font-size: 4rem;
+  }
+  
+  .controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  
+  .control-button {
+    font-size: 1rem;
+    padding: 12px 20px;
+    min-width: 140px;
+  }
+  
+  .category-filter {
+    margin: 15px 0;
+  }
+  
+  .category-select {
+    font-size: 1rem;
+    padding: 12px;
+    max-width: 250px;
+  }
+  
+  .category-explanation {
+    position: static;
+    max-width: 100%;
+    margin: 20px auto;
+    right: auto;
+    transform: none;
+  }
+  
+  /* Mobile Score Display */
+  .score-display {
+    gap: 8px;
+  }
+  
+  .score-icon {
+    font-size: 1.5rem;
+  }
+  
+  .score-content {
+    padding: 6px 12px;
+  }
+  
+  .score-label {
+    font-size: 0.75rem;
+  }
+  
+  .score-number {
+    font-size: 1.8rem;
+  }
+  
+  .score-sparkle {
+    font-size: 1.2rem;
+  }
+  
+
+}
+
+/* Large Mobile Phones (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .app {
+    padding: 10px 8px;
+  }
+  
+  .app-title {
+    font-size: 2.2rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .word-card {
+    min-width: 300px;
+    max-width: 95vw;
+    padding: 50px 30px;
+    border-width: 4px;
+  }
+  
+  .current-word {
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .control-button {
+    font-size: 0.95rem;
+    padding: 14px 20px;
+    width: 100%;
+  }
+  
+  .category-select {
+    font-size: 0.95rem;
+    padding: 12px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .category-explanation {
+    position: static;
+    max-width: 95vw;
+    margin: 15px auto;
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .category-explanation h3 {
+    font-size: 1.3rem;
+  }
+  
+  /* Large Mobile Score Display */
+  .score-display {
+    gap: 10px;
+  }
+  
+  .score-icon {
+    font-size: 1.7rem;
+  }
+  
+  .score-content {
+    padding: 7px 14px;
+  }
+  
+  .score-label {
+    font-size: 0.8rem;
+  }
+  
+  .score-number {
+    font-size: 2rem;
+  }
+  
+  .score-sparkle {
+    font-size: 1.3rem;
+  }
+  
+  .score-popup div:first-child {
+    font-size: 3.5rem;
+  }
+  
+  .score-popup div:last-child {
+    font-size: 1.5rem;
+  }
+}
+
+/* Small Mobile Phones (up to 575px) */
+@media (max-width: 575px) {
+  .app {
+    padding: 8px 5px;
+  }
+  
+  .app-header {
+    margin-bottom: 15px;
+  }
+  
+  .app-title {
+    font-size: 1.8rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1rem;
+  }
+  
+  .word-display {
+    margin: 20px 0;
+  }
+  
+  .word-card {
+    min-width: 280px;
+    max-width: 98vw;
+    padding: 40px 20px;
+    border-width: 3px;
+    border-radius: 25px;
+  }
+  
+  .current-word {
+    font-size: 3rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .control-button {
+    font-size: 0.9rem;
+    padding: 12px 16px;
+    width: 100%;
+    border-radius: 15px;
+  }
+  
+  .category-filter {
+    margin: 10px 0;
+    width: 100%;
+  }
+  
+  .category-select {
+    font-size: 0.9rem;
+    padding: 10px;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 15px;
+  }
+  
+  .category-explanation {
+    position: static;
+    max-width: 98vw;
+    margin: 10px auto;
+    padding: 12px;
+    font-size: 0.85rem;
+    border-radius: 15px;
+  }
+  
+  .category-explanation h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Extra Small Mobile Score Display */
+  .score-display {
+    gap: 6px;
+  }
+  
+  .score-icon {
+    font-size: 1.3rem;
+  }
+  
+  .score-content {
+    padding: 5px 10px;
+  }
+  
+  .score-label {
+    font-size: 0.7rem;
+  }
+  
+  .score-number {
+    font-size: 1.6rem;
+  }
+  
+  .score-sparkle {
+    font-size: 1rem;
+  }
+  
+  .celebration-ribbon {
+    width: 6px !important;
+    height: 40px !important;
+  }
+}
+
+/* Ultra Small Devices (320px and below) */
+@media (max-width: 320px) {
+  .app-title {
+    font-size: 1.6rem;
+  }
+  
+  .app-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .word-card {
+    min-width: 260px;
+    padding: 35px 15px;
+  }
+  
+  .current-word {
+    font-size: 2.5rem;
+  }
+  
+  .control-button {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+  }
+  
+  .category-select {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+  
+  /* Ultra Small Score Display */
+  .score-display {
+    gap: 5px;
+  }
+  
+  .score-icon {
+    font-size: 1.2rem;
+  }
+  
+  .score-content {
+    padding: 4px 8px;
+  }
+  
+  .score-label {
+    font-size: 0.65rem;
+  }
+  
+  .score-number {
+    font-size: 1.4rem;
+  }
+  
+  .score-sparkle {
+    font-size: 0.9rem;
+  }
+  
+  .score-popup div:first-child {
+    font-size: 2.5rem;
+  }
+}
+
+/* Landscape Orientation Adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  .app {
+    padding: 5px;
+  }
+  
+  .app-header {
+    margin-bottom: 10px;
+  }
+  
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1rem;
+  }
+  
+  .word-card {
+    padding: 30px 40px;
+    margin: 10px 0;
+  }
+  
+  .current-word {
+    font-size: 3rem;
+  }
+  
+  .controls {
+    gap: 8px;
+  }
+  
+  .control-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .category-explanation {
+    position: static;
+    margin: 10px auto;
+    max-width: 90vw;
+    padding: 10px;
+  }
+  
+  /* Landscape Score Display */
+  .score-display {
+    gap: 8px;
+  }
+  
+  .score-icon {
+    font-size: 1.4rem;
+  }
+  
+  .score-content {
+    padding: 6px 12px;
+  }
+  
+  .score-label {
+    font-size: 0.7rem;
+  }
+  
+  .score-number {
+    font-size: 1.6rem;
+  }
+  
+  .score-sparkle {
+    font-size: 1.1rem;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .current-word {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .control-button {
+    border: 2px solid;
   }
 }
