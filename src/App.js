@@ -742,11 +742,42 @@ function App() {
   // Text-to-speech functionality
   const speakWord = (word) => {
     if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(word);
-      utterance.rate = 0.7;
-      utterance.pitch = 1.2;
-      utterance.volume = 1;
-      window.speechSynthesis.speak(utterance);
+      try {
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+        
+        const speak = () => {
+          const utterance = new SpeechSynthesisUtterance(word);
+          utterance.rate = 0.7;
+          utterance.pitch = 1.2;
+          utterance.volume = 1;
+          
+          // Set a voice if available (prefer English voices)
+          const voices = window.speechSynthesis.getVoices();
+          const englishVoice = voices.find(voice => 
+            voice.lang.startsWith('en') && voice.localService
+          ) || voices.find(voice => voice.lang.startsWith('en'));
+          
+          if (englishVoice) {
+            utterance.voice = englishVoice;
+          }
+          
+          window.speechSynthesis.speak(utterance);
+        };
+        
+        // Check if voices are loaded, if not wait for them
+        const voices = window.speechSynthesis.getVoices();
+        if (voices.length === 0) {
+          window.speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
+        } else {
+          speak();
+        }
+        
+      } catch (error) {
+        console.log('Speech synthesis error:', error);
+      }
+    } else {
+      console.log('Speech synthesis not supported in this browser');
     }
   };
 
@@ -816,6 +847,11 @@ function App() {
       
       // Change background color
       setBackgroundColorIndex(prev => (prev + 1) % backgroundColors.length);
+      
+      // Auto-pronounce if enabled
+      if (autoPlay) {
+        setTimeout(() => speakWord(newWord), 200);
+      }
     }
   };
 
@@ -838,6 +874,11 @@ function App() {
       setShowAnimation(true);
       setTimeout(() => setShowAnimation(false), 500);
       console.log('Category changed to:', newCategory, 'First word:', newWord);
+      
+      // Auto-pronounce if enabled
+      if (autoPlay) {
+        setTimeout(() => speakWord(newWord), 200);
+      }
     }
   };
 
