@@ -512,3 +512,234 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Celebration Animation Styles */
+.celebration-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeInOverlay 0.5s ease-out;
+}
+
+.celebration-content {
+  text-align: center;
+  position: relative;
+  animation: bounceIn 0.8s ease-out;
+}
+
+.fireworks {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 200px;
+}
+
+.cracker {
+  position: absolute;
+  font-size: 3rem;
+  animation: explode 2s ease-out infinite;
+}
+
+.cracker1 {
+  top: 20px;
+  left: 50px;
+  animation-delay: 0s;
+}
+
+.cracker2 {
+  top: 40px;
+  right: 50px;
+  animation-delay: 0.3s;
+}
+
+.cracker3 {
+  top: 80px;
+  left: 20%;
+  animation-delay: 0.6s;
+}
+
+.cracker4 {
+  top: 60px;
+  right: 20%;
+  animation-delay: 0.9s;
+}
+
+.cracker5 {
+  top: 100px;
+  left: 50%;
+  animation-delay: 1.2s;
+}
+
+.cracker6 {
+  top: 30px;
+  left: 70%;
+  animation-delay: 1.5s;
+}
+
+.celebration-text {
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 5px solid #ffd700;
+  margin-top: 50px;
+}
+
+.celebration-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 3rem;
+  color: #ff6b9d;
+  margin: 0 0 10px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: titleBounce 1s ease-in-out infinite alternate;
+}
+
+.celebration-message {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.5rem;
+  color: #4a5568;
+  margin: 0 0 20px 0;
+  font-weight: bold;
+}
+
+.confetti {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.confetti-piece {
+  font-size: 2rem;
+  animation: confettiFall 3s ease-in-out infinite;
+}
+
+.confetti-piece:nth-child(1) { animation-delay: 0s; }
+.confetti-piece:nth-child(2) { animation-delay: 0.2s; }
+.confetti-piece:nth-child(3) { animation-delay: 0.4s; }
+.confetti-piece:nth-child(4) { animation-delay: 0.6s; }
+.confetti-piece:nth-child(5) { animation-delay: 0.8s; }
+.confetti-piece:nth-child(6) { animation-delay: 1s; }
+.confetti-piece:nth-child(7) { animation-delay: 1.2s; }
+.confetti-piece:nth-child(8) { animation-delay: 1.4s; }
+
+/* Celebration Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(50px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes titleBounce {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes ribbonFall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Mobile responsiveness for celebration */
+@media (max-width: 768px) {
+  .fireworks {
+    width: 300px;
+    top: -80px;
+  }
+  
+  .cracker {
+    font-size: 2rem;
+  }
+  
+  .celebration-title {
+    font-size: 2.5rem;
+  }
+  
+  .celebration-message {
+    font-size: 1.2rem;
+  }
+  
+  .celebration-text {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+  
+  .confetti-piece {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .celebration-title {
+    font-size: 2rem;
+  }
+  
+  .celebration-message {
+    font-size: 1rem;
+  }
+  
+  .celebration-text {
+    padding: 25px 15px;
+  }
+  
+  .fireworks {
+    width: 250px;
+  }
+  
+  .cracker {
+    font-size: 1.5rem;
+  }
+}

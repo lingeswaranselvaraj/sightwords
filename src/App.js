@@ -12,8 +12,9 @@ function App() {
   const [showAnimation, setShowAnimation] = useState(false);
   const [autoPlay, setAutoPlay] = useState(false);
   const [backgroundColorIndex, setBackgroundColorIndex] = useState(0);
+  const [showCelebration, setShowCelebration] = useState(false);
 
-  // Default sight words for demo
+  // Default sight words for demo - Complete list from CSV
   const defaultWords = [
     { word: 'the', category: 'basic' },
     { word: 'and', category: 'basic' },
@@ -98,7 +99,139 @@ function App() {
     { word: 'any', category: 'quantifiers' },
     { word: 'about', category: 'prepositions' },
     { word: 'around', category: 'prepositions' },
-    { word: 'want', category: 'action' }
+    { word: 'want', category: 'action' },
+    { word: "don't", category: 'contractions' },
+    { word: 'how', category: 'question' },
+    { word: 'know', category: 'action' },
+    { word: 'right', category: 'directions' },
+    { word: 'put', category: 'action' },
+    { word: 'too', category: 'adverbs' },
+    { word: 'got', category: 'verbs' },
+    { word: 'take', category: 'action' },
+    { word: 'where', category: 'question' },
+    { word: 'every', category: 'quantifiers' },
+    { word: 'pretty', category: 'adjectives' },
+    { word: 'jump', category: 'action' },
+    { word: 'green', category: 'colors' },
+    { word: 'four', category: 'numbers' },
+    { word: 'away', category: 'adverbs' },
+    { word: 'old', category: 'adjectives' },
+    { word: 'by', category: 'prepositions' },
+    { word: 'their', category: 'possessive' },
+    { word: 'here', category: 'adverbs' },
+    { word: 'saw', category: 'verbs' },
+    { word: 'call', category: 'action' },
+    { word: 'after', category: 'prepositions' },
+    { word: 'well', category: 'adverbs' },
+    { word: 'think', category: 'action' },
+    { word: 'ran', category: 'verbs' },
+    { word: 'let', category: 'action' },
+    { word: 'help', category: 'action' },
+    { word: 'make', category: 'action' },
+    { word: 'going', category: 'verbs' },
+    { word: 'sleep', category: 'action' },
+    { word: 'brown', category: 'colors' },
+    { word: 'yellow', category: 'colors' },
+    { word: 'five', category: 'numbers' },
+    { word: 'six', category: 'numbers' },
+    { word: 'walk', category: 'action' },
+    { word: 'two', category: 'numbers' },
+    { word: 'or', category: 'conjunctions' },
+    { word: 'before', category: 'prepositions' },
+    { word: 'eat', category: 'action' },
+    { word: 'again', category: 'adverbs' },
+    { word: 'play', category: 'action' },
+    { word: 'who', category: 'question' },
+    { word: 'been', category: 'verbs' },
+    { word: 'may', category: 'modals' },
+    { word: 'stop', category: 'action' },
+    { word: 'off', category: 'prepositions' },
+    { word: 'never', category: 'adverbs' },
+    { word: 'seven', category: 'numbers' },
+    { word: 'eight', category: 'numbers' },
+    { word: 'cold', category: 'adjectives' },
+    { word: 'today', category: 'time' },
+    { word: 'fly', category: 'action' },
+    { word: 'myself', category: 'pronouns' },
+    { word: 'round', category: 'adjectives' },
+    { word: 'tell', category: 'action' },
+    { word: 'much', category: 'quantifiers' },
+    { word: 'keep', category: 'action' },
+    { word: 'give', category: 'action' },
+    { word: 'work', category: 'action' },
+    { word: 'first', category: 'ordinals' },
+    { word: 'try', category: 'action' },
+    { word: 'new', category: 'adjectives' },
+    { word: 'must', category: 'modals' },
+    { word: 'start', category: 'action' },
+    { word: 'black', category: 'colors' },
+    { word: 'white', category: 'colors' },
+    { word: 'ten', category: 'numbers' },
+    { word: 'does', category: 'verbs' },
+    { word: 'bring', category: 'action' },
+    { word: 'goes', category: 'verbs' },
+    { word: 'write', category: 'action' },
+    { word: 'always', category: 'adverbs' },
+    { word: 'drink', category: 'action' },
+    { word: 'once', category: 'adverbs' },
+    { word: 'soon', category: 'adverbs' },
+    { word: 'made', category: 'verbs' },
+    { word: 'run', category: 'action' },
+    { word: 'gave', category: 'verbs' },
+    { word: 'open', category: 'action' },
+    { word: 'has', category: 'verbs' },
+    { word: 'find', category: 'action' },
+    { word: 'only', category: 'adverbs' },
+    { word: 'us', category: 'pronouns' },
+    { word: 'three', category: 'numbers' },
+    { word: 'our', category: 'possessive' },
+    { word: 'better', category: 'adjectives' },
+    { word: 'hold', category: 'action' },
+    { word: 'buy', category: 'action' },
+    { word: 'funny', category: 'adjectives' },
+    { word: 'warm', category: 'adjectives' },
+    { word: 'ate', category: 'verbs' },
+    { word: 'full', category: 'adjectives' },
+    { word: 'those', category: 'demonstrative' },
+    { word: 'done', category: 'verbs' },
+    { word: 'use', category: 'action' },
+    { word: 'fast', category: 'adjectives' },
+    { word: 'say', category: 'action' },
+    { word: 'light', category: 'adjectives' },
+    { word: 'pick', category: 'action' },
+    { word: 'hurt', category: 'action' },
+    { word: 'pull', category: 'action' },
+    { word: 'cut', category: 'action' },
+    { word: 'kind', category: 'adjectives' },
+    { word: 'both', category: 'quantifiers' },
+    { word: 'sit', category: 'action' },
+    { word: 'which', category: 'question' },
+    { word: 'fall', category: 'action' },
+    { word: 'carry', category: 'action' },
+    { word: 'small', category: 'adjectives' },
+    { word: 'under', category: 'prepositions' },
+    { word: 'read', category: 'action' },
+    { word: 'why', category: 'question' },
+    { word: 'own', category: 'possessive' },
+    { word: 'found', category: 'verbs' },
+    { word: 'wash', category: 'action' },
+    { word: 'show', category: 'action' },
+    { word: 'hot', category: 'adjectives' },
+    { word: 'because', category: 'conjunctions' },
+    { word: 'far', category: 'adjectives' },
+    { word: 'live', category: 'action' },
+    { word: 'draw', category: 'action' },
+    { word: 'clean', category: 'action' },
+    { word: 'grow', category: 'action' },
+    { word: 'best', category: 'superlatives' },
+    { word: 'upon', category: 'prepositions' },
+    { word: 'these', category: 'demonstrative' },
+    { word: 'sing', category: 'action' },
+    { word: 'together', category: 'adverbs' },
+    { word: 'please', category: 'polite' },
+    { word: 'thank', category: 'polite' },
+    { word: 'wish', category: 'action' },
+    { word: 'many', category: 'quantifiers' }
   ];
 
   // Background colors array for "Next Word" button
@@ -137,12 +270,25 @@ function App() {
     if (selectedCategory === 'all') {
       return sightWords;
     }
-    return sightWords.filter(item => item.category === selectedCategory);
+    
+    // Debug: Show all available categories
+    const availableCategories = [...new Set(sightWords.map(item => item.category))];
+    console.log('Available categories:', availableCategories);
+    console.log('Looking for category:', selectedCategory);
+    
+    const filtered = sightWords.filter(item => item.category === selectedCategory);
+    console.log('Words found for category "' + selectedCategory + '":', filtered.map(w => w.word));
+    
+    return filtered;
   };
 
   // Select random word
   const selectRandomWord = () => {
     const filteredWords = getFilteredWords();
+    console.log('Selected category:', selectedCategory);
+    console.log('Filtered words:', filteredWords);
+    console.log('Total words available:', sightWords.length);
+    
     if (filteredWords.length > 0) {
       const randomIndex = Math.floor(Math.random() * filteredWords.length);
       const newWord = filteredWords[randomIndex].word;
@@ -153,17 +299,32 @@ function App() {
       if (autoPlay) {
         setTimeout(() => speakWord(newWord), 200);
       }
+    } else {
+      console.log('No words found for category:', selectedCategory);
+      // Fallback to showing a message or the first word
+      if (sightWords.length > 0) {
+        setCurrentWord(sightWords[0].word);
+      }
     }
   };
 
   // Select next word in sequence
   const selectNextWord = () => {
-    // Always use ALL words for next word sequence, not filtered by category
-    const allWords = sightWords;
-    if (allWords.length > 0) {
-      const currentIndex = allWords.findIndex(item => item.word === currentWord);
-      const nextIndex = (currentIndex + 1) % allWords.length;
-      const newWord = allWords[nextIndex].word;
+    // Use filtered words based on selected category
+    const filteredWords = getFilteredWords();
+    if (filteredWords.length > 0) {
+      const currentIndex = filteredWords.findIndex(item => item.word === currentWord);
+      let nextIndex;
+      
+      if (currentIndex === -1) {
+        // Current word not found in filtered list, start from beginning
+        nextIndex = 0;
+      } else {
+        // Move to next word in the filtered list
+        nextIndex = (currentIndex + 1) % filteredWords.length;
+      }
+      
+      const newWord = filteredWords[nextIndex].word;
       setCurrentWord(newWord);
       setShowAnimation(true);
       setTimeout(() => setShowAnimation(false), 500);
@@ -173,10 +334,39 @@ function App() {
     }
   };
 
+  // Handle category selection change
+  const handleCategoryChange = (newCategory) => {
+    setSelectedCategory(newCategory);
+    
+    // Get words for the new category
+    let filteredWords;
+    if (newCategory === 'all') {
+      filteredWords = sightWords;
+    } else {
+      filteredWords = sightWords.filter(item => item.category === newCategory);
+    }
+    
+    // Update current word to first word from new category
+    if (filteredWords.length > 0) {
+      const newWord = filteredWords[0].word;
+      setCurrentWord(newWord);
+      setShowAnimation(true);
+      setTimeout(() => setShowAnimation(false), 500);
+      console.log('Category changed to:', newCategory, 'First word:', newWord);
+    }
+  };
+
   // Mark word as learned
   const markWordLearned = () => {
     setWordsLearned(prev => prev + 1);
     setShowAnimation(true);
+    setShowCelebration(true);
+    
+    // Hide celebration after 3 seconds
+    setTimeout(() => {
+      setShowCelebration(false);
+    }, 3000);
+    
     setTimeout(() => {
       setShowAnimation(false);
       selectRandomWord();
@@ -202,19 +392,29 @@ function App() {
           
           for (let i = 1; i < jsonData.length; i++) { // Skip header row
             const row = jsonData[i];
-            if (row[0]) { // Check if word exists
+            if (row[0] && row[0].toString().trim()) { // Check if word exists and is not empty
               const word = row[0].toString().toLowerCase().trim();
               const category = row[1] ? row[1].toString().toLowerCase().trim() : 'general';
-              parsedWords.push({ word, category });
-              parsedCategories.add(category);
+              
+              // Only add if word is valid
+              if (word.length > 0) {
+                parsedWords.push({ word, category });
+                parsedCategories.add(category);
+              }
             }
           }
+          
+          console.log('Parsed words:', parsedWords.length);
+          console.log('Parsed categories:', [...parsedCategories]);
           
           if (parsedWords.length > 0) {
             setSightWords(parsedWords);
             setCategories([...parsedCategories]);
             setCurrentWord(parsedWords[0].word);
             setSelectedCategory('all');
+            console.log('Excel file loaded successfully');
+          } else {
+            alert('No valid words found in the Excel file.');
           }
         } catch (error) {
           alert('Error reading Excel file. Please make sure it has words in the first column and categories in the second column.');
@@ -234,20 +434,6 @@ function App() {
       </header>
 
       <main className="main-content">
-        {/* File Upload Section */}
-        <div className="file-upload-section">
-          <label htmlFor="excel-upload" className="upload-button">
-            📁 Upload Excel File
-            <input
-              id="excel-upload"
-              type="file"
-              accept=".xlsx,.xls"
-              onChange={handleFileUpload}
-              style={{ display: 'none' }}
-            />
-          </label>
-        </div>
-
         {/* Category Selector */}
         {categories.length > 1 && (
           <div className="category-section">
@@ -255,15 +441,18 @@ function App() {
             <select
               id="category-select"
               value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
+              onChange={(e) => handleCategoryChange(e.target.value)}
               className="category-select"
             >
-              <option value="all">All Words</option>
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </option>
-              ))}
+              <option value="all">All Words ({sightWords.length})</option>
+              {categories.map(category => {
+                const wordsInCategory = sightWords.filter(word => word.category === category).length;
+                return (
+                  <option key={category} value={category}>
+                    {category.charAt(0).toUpperCase() + category.slice(1)} ({wordsInCategory})
+                  </option>
+                );
+              })}
             </select>
           </div>
         )}
@@ -317,19 +506,82 @@ function App() {
             🎵 Auto-pronounce new words
           </label>
         </div>
-
-        {/* Instructions */}
-        <div className="instructions">
-          <h3>How to Use:</h3>
-          <ul>
-            <li>📱 Click "Say It!" to hear the word</li>
-            <li>🎲 Click "Random Word" for a surprise word</li>
-            <li>➡️ Click "Next Word" to go through words in order</li>
-            <li>⭐ Click "I Know This!" when you've learned a word</li>
-            <li>📁 Upload your own Excel file with sight words</li>
-          </ul>
-        </div>
       </main>
+
+      {/* Celebration Animation - Only Falling Ribbons */}
+      {showCelebration && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: 1000
+        }}>
+          {/* Falling Ribbons */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            overflow: 'hidden',
+            pointerEvents: 'none'
+          }}>
+            {[...Array(50)].map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  position: 'absolute',
+                  top: '-20px',
+                  left: `${Math.random() * 100}%`,
+                  width: '10px',
+                  height: '60px',
+                  background: `linear-gradient(45deg, 
+                    ${['#ff6b9d', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff', '#5f27cd'][Math.floor(Math.random() * 8)]}, 
+                    ${['#ff6b9d', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff', '#5f27cd'][Math.floor(Math.random() * 8)]})`,
+                  borderRadius: '5px',
+                  transform: `rotate(${Math.random() * 360}deg)`,
+                  animation: `ribbonFall ${2 + Math.random() * 3}s linear infinite`,
+                  animationDelay: `${Math.random() * 2}s`,
+                  boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Message box removed - only ribbons now */}
+          <div style={{display: 'none'}}>
+            <h2 style={{ 
+              color: '#ff6b9d', 
+              fontSize: '3rem', 
+              margin: '0 0 10px 0',
+              fontFamily: 'Fredoka One, cursive',
+              textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+              animation: 'titleBounce 1s ease-in-out infinite alternate'
+            }}>
+              🌟 Celebration! 🌟
+            </h2>
+            <p style={{ 
+              color: '#4a5568', 
+              fontSize: '1.5rem', 
+              margin: '0 0 20px 0',
+              fontFamily: 'Comic Neue, cursive',
+              fontWeight: 'bold'
+            }}>
+              You learned a new word!
+            </p>
+            <div style={{ 
+              fontSize: '2rem', 
+              marginTop: '20px',
+              animation: 'sparkle 1.5s ease-in-out infinite'
+            }}>
+              🎉 🎊 ⭐ 💫 ✨ � �🎆 🎇
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
